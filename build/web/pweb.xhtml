@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <div align="center">
+        <h:head>
+            <title>Prova PWeb</title>
+            <h2>SESSÃO DA TARDE DO IFBA</h2>
+            <h2>CURSO DE ADS</h2>
+            <h2>SALVADOR, AGOSTO DE 2019 - IFBA</h2>
+        </h:head>
+        <h:body>
+
+            <h:form id="form">
+                <p:dataGrid var="c" value="${comunicacaoBean.comunicacoes}" columns="3" 
+                            rows="12" paginator="true" id="cars"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="6,12,16">
+
+                    <p:panel header="#{c.destinatarioNome}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="#{c.idComunicacao}" />
+                            <h:outputText value="#{c.destinatarioTelefone}" />
+                            <h:outputText value="${c.destinatarioEmail}"/>
+                            <h:outputText value="${c.remetenteNome}"/>
+                            <h:outputText value="${c.remetenteTelefone}"/>
+                            <h:outputText value="${c.remetenteEmail}"/>
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:commandButton id="Edit" actionListener="#{comunicacaoBean.refresh(context)}" value="Edit" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton id="Delete" actionListener="#{comunicacaoBean.Delete}" value="Delete" style="margin-right:20px;" styleClass="ui-priority-primary" />
+
+                </p:dataGrid>
+                <p:commandButton id="loadAll" actionListener="#{comunicacaoBean.LoadForAll}" value="Load All" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <p:commandButton id="new" actionListener="#{comunicacaoBean.Refresh()}" value="new" style="margin-right:20px;" styleClass="ui-priority-primary" />
+
+            </h:form>
+
+
+
+
+        </h:body>
+    </div>
+</html>
+

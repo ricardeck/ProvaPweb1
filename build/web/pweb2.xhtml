@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <div align="center">
+        <h:head>
+            <title>Prova PWeb</title>
+            <h2>SESSÃO DA TARDE DO IFBA</h2>
+            <h2>CURSO DE ADS</h2>
+            <h2>SALVADOR, AGOSTO DE 2019 - IFBA</h2>
+        </h:head>
+        <h:body>
+            <h:form>
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:panel id="basic" header="Instituto Federal da Bahia" footer="Ricardo Loureiro - INF 012" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5" >
+                        
+                        <h:outputText value="Para: " />
+                        <p:inputText id="destinatario" value="#{comunicacaoBean.comunicacao.destinatarioNome}"/>
+
+                        <h:outputText value="Telefax: " />
+                        <p:inputMask id="destinatarioTelefone" value="#{comunicacaoBean.comunicacao.destinatarioTelefone}" mask="(99) 9999-9999"/>
+
+                        <h:outputText value="e-mail: " />
+                        <p:inputText id="destinatarioEmail" value="#{comunicacaoBean.comunicacao.destinatarioEmail}"/>
+
+                        <h:outputText value="De: " />
+                        <p:inputText id="remetente" value="#{comunicacaoBean.comunicacao.remetenteNome}"/>
+
+                        <h:outputText value="Telefax: " />
+                        <p:inputMask id="remetenteTelefone" value="#{comunicacaoBean.comunicacao.remetenteTelefone}" mask="(99) 9999-9999"/>
+
+                        <h:outputText value="e-mail: " />
+
+                        <p:inputText id="remetenteEmail" value="#{comunicacaoBean.comunicacao.remetenteEmail}"/>
+
+                        <p:outputLabel for="data" value="Data" />
+                        <p:calendar id="data" value="#{comunicacaoBean.comunicacao.data}" />
+
+                    </h:panelGrid>
+                </p:panel>
+                <p:commandButton value="Save" id="salvar" update="growl" action="#{comunicacaoBean.Save}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <p:commandButton id="load" actionListener="#{comunicacaoBean.Load}" update="growl" value="Load by e-mail" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <p:commandButton id="Delete" actionListener="#{comunicacaoBean.Delete}" update="growl" value="Delete" style="margin-right:20px;" styleClass="ui-priority-primary" />
+
+            </h:form>
+
+
+
+        </h:body>
+    </div>
+</html>
+
