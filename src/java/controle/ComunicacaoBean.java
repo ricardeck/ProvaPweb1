@@ -34,7 +34,7 @@ public class ComunicacaoBean {
     public Comunicacao getComunicacao() {
         return comunicacao;
     }
-    
+
     public List<Comunicacao> getComunicacoes() {
         return comunicacoes;
     }
@@ -85,7 +85,7 @@ public class ComunicacaoBean {
         DAOComunicacao dao = new DAOComunicacaoDerby();
         try {
             if (dao.LoadForAll(comunicacoes)) {
-//                refresh(context);
+                refresh(context);
             } else {
                 message = "Não foi encontrado o dado no banco ";
 
@@ -95,7 +95,7 @@ public class ComunicacaoBean {
         }
         context.addMessage(null, new FacesMessage("BD Recuperação ", message));
     }
-    
+
     public void Delete() {
         String message;
 //        message = "teste";
@@ -113,14 +113,27 @@ public class ComunicacaoBean {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("BD Gravação ", message));
     }
-    
-    private void refresh() throws IOException {
+
+    public void refresh() throws IOException, InterruptedException, Exception {
+        DAOComunicacao dao = new DAOComunicacaoDerby();
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().redirect("pweb2.xhtml");
+        if (dao.Load(comunicacao)) {
+            refresh(context);
+        }
+    }
+    
+    public void redirect() throws IOException, InterruptedException, Exception {
+        DAOComunicacao dao = new DAOComunicacaoDerby();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().redirect("pweb2.xhtml");
+        if (dao.Load(comunicacao)) {
+            refresh(context);
+        }
     }
 
-    private void refresh(FacesContext context) throws IOException {
-        context.getExternalContext().redirect("pweb2.xhtml");
+    private void refresh(FacesContext context) throws IOException, InterruptedException {
+        context.getExternalContext().redirect("pweb.xhtml");
     }
 
 }

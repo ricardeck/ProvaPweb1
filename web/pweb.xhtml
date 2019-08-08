@@ -20,7 +20,6 @@
 
                     <p:panel header="#{c.destinatarioNome}" style="text-align:center">
                         <h:panelGrid columns="1" style="width:100%">
-                            <h:outputText value="#{c.idComunicacao}" />
                             <h:outputText value="#{c.destinatarioTelefone}" />
                             <h:outputText value="${c.destinatarioEmail}"/>
                             <h:outputText value="${c.remetenteNome}"/>
@@ -28,12 +27,10 @@
                             <h:outputText value="${c.remetenteEmail}"/>
                         </h:panelGrid>
                     </p:panel>
-                    <p:commandButton id="Edit" actionListener="#{comunicacaoBean.refresh(context)}" value="Edit" style="margin-right:20px;" styleClass="ui-priority-primary" />
-                    <p:commandButton id="Delete" actionListener="#{comunicacaoBean.Delete}" value="Delete" style="margin-right:20px;" styleClass="ui-priority-primary" />
-
+                    <p:commandButton id="Edit" actionListener="#{comunicacaoBean.redirect()}" value="Edit" style="margin-right:20px;" styleClass="ui-priority-primary" />
                 </p:dataGrid>
                 <p:commandButton id="loadAll" actionListener="#{comunicacaoBean.LoadForAll}" value="Load All" style="margin-right:20px;" styleClass="ui-priority-primary" />
-                <p:commandButton id="new" actionListener="#{comunicacaoBean.Refresh()}" value="new" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <p:commandButton id="new" actionListener="#{comunicacaoBean.refresh()}" value="new" style="margin-right:20px;" styleClass="ui-priority-primary" />
 
             </h:form>
 
