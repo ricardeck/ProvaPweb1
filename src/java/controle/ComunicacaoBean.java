@@ -66,7 +66,7 @@ public class ComunicacaoBean {
         DAOComunicacao dao = new DAOComunicacaoDerby();
         try {
             if (dao.Load(comunicacao)) {
-                refresh(context);
+                refresh2(context);
             } else {
                 message = "Não foi encontrado o dado no banco ";
 
@@ -96,7 +96,7 @@ public class ComunicacaoBean {
         context.addMessage(null, new FacesMessage("BD Recuperação ", message));
     }
 
-    public void Delete() {
+    public void Delete() throws InterruptedException, Exception {
         String message;
 //        message = "teste";
         DAOComunicacao dao = new DAOComunicacaoDerby();
@@ -112,6 +112,8 @@ public class ComunicacaoBean {
 
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("BD Gravação ", message));
+        refresh();
+        
     }
 
     public void refresh() throws IOException, InterruptedException, Exception {
@@ -122,18 +124,49 @@ public class ComunicacaoBean {
             refresh(context);
         }
     }
-    
-    public void redirect() throws IOException, InterruptedException, Exception {
+
+    public void redirect(Comunicacao comunicacao) throws IOException, InterruptedException, Exception {
         DAOComunicacao dao = new DAOComunicacaoDerby();
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().redirect("pweb2.xhtml");
-        if (dao.Load(comunicacao)) {
-            refresh(context);
-        }
+        this.comunicacao.setDestinatarioNome(comunicacao.getDestinatarioNome());
+        this.comunicacao.setDestinatarioTelefone(comunicacao.getDestinatarioTelefone());
+        this.comunicacao.setDestinatarioEmail(comunicacao.getDestinatarioEmail());
+        this.comunicacao.setRemetenteNome(comunicacao.getRemetenteNome());
+        this.comunicacao.setRemetenteTelefone(comunicacao.getRemetenteTelefone());
+        this.comunicacao.setRemetenteEmail(comunicacao.getRemetenteEmail());
+        this.comunicacao.setData(comunicacao.getData());
+        this.comunicacao.setData(comunicacao.getData());
+        dao.Load(comunicacao);
+        refresh(context);
     }
 
     private void refresh(FacesContext context) throws IOException, InterruptedException {
         context.getExternalContext().redirect("pweb.xhtml");
+    }
+
+    private void refresh2(FacesContext context) throws IOException, InterruptedException {
+        context.getExternalContext().redirect("pweb2.xhtml");
+    }
+    
+    public void LoadDelete() throws IOException, InterruptedException, Exception {
+        String message = "ok";
+        FacesContext context = FacesContext.getCurrentInstance();
+
+//        message = "email teste";
+        DAOComunicacao dao = new DAOComunicacaoDerby();
+        try {
+            if (dao.Load(comunicacao)) {
+                refresh2(context);
+            } else {
+                message = "Não foi encontrado o dado no banco ";
+
+            }
+        } catch (Exception ex) {
+            message = "Problemas ao conectar com o BD!!!" + ex;
+        }
+        context.addMessage(null, new FacesMessage("BD Recuperação ", message));
+        this.Delete();
     }
 
 }

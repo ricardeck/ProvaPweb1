@@ -41,9 +41,7 @@
                     </h:panelGrid>
                 </p:panel>
                 <p:commandButton value="Save" id="salvar" update="growl" action="#{comunicacaoBean.Save}" style="margin-right:20px;" styleClass="ui-priority-primary" />
-                <p:commandButton id="load" actionListener="#{comunicacaoBean.Load}" update="growl" value="Load by e-mail" style="margin-right:20px;" styleClass="ui-priority-primary" />
-                <p:commandButton id="Delete" actionListener="#{comunicacaoBean.Delete}" update="growl" value="Delete" style="margin-right:20px;" styleClass="ui-priority-primary" />
-
+                <p:commandButton id="Delete" actionListener="#{comunicacaoBean.LoadDelete}" update="growl" value="Delete" style="margin-right:20px;" styleClass="ui-priority-primary" />
             </h:form>
 
 

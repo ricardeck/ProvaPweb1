@@ -63,6 +63,7 @@ public class DAOComunicacaoDerby implements DAOComunicacao {
         return false;
     }
 
+    @Override
     public boolean LoadForAll(List<Comunicacao> comunicacoes) throws Exception {
         Connection conn = DerbyDbConnection.getInstancia().getConexao();
 //        Comunicacao comunicacao = new Comunicacao();
@@ -85,6 +86,7 @@ public class DAOComunicacaoDerby implements DAOComunicacao {
         return true;
     }
 
+    @Override
     public boolean Delete(Comunicacao comunicacao) throws Exception {
         Connection conn = DerbyDbConnection.getInstancia().getConexao();
         PreparedStatement pst = conn.prepareStatement("DELETE FROM SA.COMUNICACAO WHERE IDCOMUNICACAO = ?");
